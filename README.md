@@ -4,7 +4,7 @@ Proyek ETL (Extract, Transform, Load) untuk membangun Data Warehouse platform mu
 
 ---
 
-## 🏛️ Arsitektur & Teknologi
+##  Arsitektur & Teknologi
 
 - **Source Database**: PostgreSQL (`etl_database`) — OLTP berisi 17 tabel data operasional Spotify/Streaming.
 - **Target Data Warehouse**: PostgreSQL (`streaming_music_dw`) — Skema Bintang (Star Schema) berisi 5 Dimension Tables dan 3 Fact Tables.
@@ -14,7 +14,7 @@ Proyek ETL (Extract, Transform, Load) untuk membangun Data Warehouse platform mu
 
 ---
 
-## 📁 Struktur Direktori
+##  Struktur Direktori
 
 ```text
 etl-project/
@@ -49,9 +49,9 @@ etl-project/
 
 ---
 
-## 🚀 Panduan Setup (After Clone dari Git)
+## Panduan Setup (After Clone dari Git)
 
-Jika Anda baru saja meng-clone repository ini ke komputer/laptop baru, ikuti langkah berikut:
+Jika baru saja clone repository ini ke local, langkah-langkahnya:
 
 ### 1. Clone Repository
 ```bash
@@ -74,7 +74,7 @@ docker exec -u 0 etl-hop chown -R hop:hop /hop/config /hop/audit
 
 ---
 
-## 🔑 Informasi Akses & Kredensial
+##  Informasi Akses & Kredensial
 
 | Layanan | URL | Kredensial |
 |---|---|---|
@@ -86,7 +86,7 @@ docker exec -u 0 etl-hop chown -R hop:hop /hop/config /hop/audit
 
 ---
 
-## 🔄 Runtutan Eksekusi ETL di Apache Hop
+##  Runtutan Eksekusi ETL di Apache Hop
 
 Agar integritas referensial (Foreign Key) terpenuhi, pipeline **harus** dijalankan sesuai urutan:
 
@@ -102,25 +102,25 @@ Agar integritas referensial (Foreign Key) terpenuhi, pipeline **harus** dijalank
 2. `PL_FACT_USER_ACTIVITY.hpl`
 3. `PL_FACT_PAYMENT.hpl`
 
-> **Tips:** Anda juga dapat menjalankan seluruh pipeline secara berurutan dan otomatis melalui file workflow:
+> **Tips:** dapat menjalankan seluruh pipeline secara berurutan dan otomatis melalui file workflow:
 > **`hop-projects/streaming-project/workflow.hwf`**.
 
 ---
 
-## 💾 Panduan Menyimpan Pekerjaan & Push ke Git
+##  Git 
 
 ### Aturan Simpan di Apache Hop Web
 Saat membuat atau mengedit pipeline di Apache Hop Web, simpan file ke direktori:
 ```text
 /hop/projects/streaming-project/pipelines/NAMA_PIPELINE.hpl
 ```
-*(Atau klik folder **`pipelines`** pada jendela Save As).* File otomatis tersinkronisasi secara realtime ke folder laptop Anda.
+*(Atau klik folder **`pipelines`** pada window Save As).* File otomatis tersinkronisasi secara realtime ke folder local.
 
-### Perintah Rutin Menyimpan Perubahan ke GitHub
+### Commit
 Buka terminal di folder project, lalu jalankan:
 ```bash
 git add .
-git commit -m "feat: deskripsi perubahan pekerjaan Anda"
+git commit -m "feat (pipelines): add PL_DIM_ALBUM "
 git push origin main
 ```
 
