@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "ETL PostgreSQL",
+      "Group": "Servers",
+      "Host": "etl-postgres",
+      "Port": 5432,
+      "MaintenanceDB": "postgres",
+      "Username": "etl_user",
+      "SSLMode": "prefer",
+      "PassFile": "/pgadmin4/pgpass"
+    }
+  }
+}

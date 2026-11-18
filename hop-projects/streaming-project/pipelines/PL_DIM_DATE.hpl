@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <pipeline_version/>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <pipeline_status>0</pipeline_status>
+    <parameters/>
+    <name>PL_DIM_DATE</name>
+    <name_sync_with_filename>N</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <created_user>-</created_user>
+    <modified_user>-</modified_user>
+    <created_date>2026/11/18 07:10:15.217</created_date>
+    <modified_date>2026/11/18 08:15:57.499</modified_date>
+    <created_hop_version>2.20.0</created_hop_version>
+    <modified_hop_version>2.20.0</modified_hop_version>
+  </info>
+  <transform>
+    <type>TableInput</type>
+    <name>FROM_TABLE_DATE</name>
+    <sql>SELECT 
+    tanggal,
+    EXTRACT(DAY FROM tanggal)::INTEGER AS hari,
+    EXTRACT(MONTH FROM tanggal)::INTEGER AS bulan,
+    TO_CHAR(tanggal, 'TMMonth') AS nama_bulan,
+    EXTRACT(QUARTER FROM tanggal)::INTEGER AS kuartal,
+    EXTRACT(YEAR FROM tanggal)::INTEGER AS tahun
+FROM (
+    SELECT DISTINCT tanggal
+    FROM (
+        SELECT activity_date AS tanggal FROM user_activity
+        UNION
+        SELECT tanggal_bayar FROM payments
+        UNION
+        SELECT mulai FROM subscriptions
+        UNION
+        SELECT berakhir FROM subscriptions
+        UNION
+        SELECT tanggal_rilis FROM albums
+        UNION
+        SELECT tanggal_follow FROM artist_followers
+    ) AS dates
+    WHERE tanggal IS NOT NULL
+) AS d;</sql>
+    <limit>0</limit>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <connection>SOURCE_STREAMING_MUSIC</connection>
+    <lookup/>
+    <sql_from_file/>
+    <use_named_parameters>Y</use_named_parameters>
+    <specify_fields>N</specify_fields>
+    <validate_specified_fields>N</validate_specified_fields>
+    <fields/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>96</xloc>
+      <yloc>128</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <transform>
+    <type>InsertUpdate</type>
+    <name>INSERT_UPDATE_TO_DIM_DATE</name>
+    <lookup>
+      <key>
+        <name>tanggal</name>
+        <field>tanggal</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>tanggal</name>
+        <rename>tanggal</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>bulan</name>
+        <rename>bulan</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>hari</name>
+        <rename>hari</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>kuartal</name>
+        <rename>kuartal</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>nama_bulan</name>
+        <rename>nama_bulan</rename>
+        <update>Y</update>
+      </value>
+      <value>
+        <name>tahun</name>
+        <rename>tahun</rename>
+        <update>Y</update>
+      </value>
+      <schema>public</schema>
+      <table>dim_date</table>
+    </lookup>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <connection>TARGET_STREAMING_MUSIC</connection>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>352</xloc>
+      <yloc>128</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <order>
+    <hop>
+      <from>FROM_TABLE_DATE</from>
+      <to>INSERT_UPDATE_TO_DIM_DATE</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <notepads/>
+  <attributes/>
+  <transform_error_handling/>
+</pipeline>

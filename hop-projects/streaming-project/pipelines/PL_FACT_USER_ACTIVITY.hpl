@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pipeline>
+  <info>
+    <pipeline_version/>
+    <capture_transform_performance>N</capture_transform_performance>
+    <transform_performance_capturing_delay>1000</transform_performance_capturing_delay>
+    <transform_performance_capturing_size_limit>100</transform_performance_capturing_size_limit>
+    <pipeline_status>0</pipeline_status>
+    <parameters/>
+    <name>PL_FACT_USER_ACTIVITY</name>
+    <name_sync_with_filename>N</name_sync_with_filename>
+    <description/>
+    <extended_description/>
+    <created_user>-</created_user>
+    <modified_user>-</modified_user>
+    <created_date>2026/11/18 07:28:50.134</created_date>
+    <modified_date>2026/11/18 07:34:29.522</modified_date>
+    <created_hop_version>2.20.0</created_hop_version>
+    <modified_hop_version>2.20.0</modified_hop_version>
+  </info>
+  <transform>
+    <type>TableInput</type>
+    <name>FROM_USER_ACTIVITY</name>
+    <sql>SELECT
+    activity_id,
+    user_id,
+    activity_date,
+    activity_type,
+    session_id,
+    waktu_mulai,
+    waktu_selesai,
+    EXTRACT(
+        EPOCH FROM (waktu_selesai - waktu_mulai)
+    )::INTEGER AS durasi_detik
+FROM user_activity
+WHERE waktu_mulai IS NOT NULL
+  AND waktu_selesai IS NOT NULL
+  AND waktu_selesai >= waktu_mulai;</sql>
+    <limit>0</limit>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <connection>SOURCE_STREAMING_MUSIC</connection>
+    <lookup/>
+    <sql_from_file/>
+    <use_named_parameters>Y</use_named_parameters>
+    <specify_fields>N</specify_fields>
+    <validate_specified_fields>N</validate_specified_fields>
+    <fields/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>144</xloc>
+      <yloc>128</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <transform>
+    <type>TableOutput</type>
+    <name>TO_FACT_USER_ACTIVITY</name>
+    <connection>TARGET_STREAMING_MUSIC</connection>
+    <schema>public</schema>
+    <table>fact_user_activity</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <only_when_have_rows>N</only_when_have_rows>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <specify_fields>N</specify_fields>
+    <auto_update_table_structure>N</auto_update_table_structure>
+    <always_drop_and_recreate>N</always_drop_and_recreate>
+    <add_columns>N</add_columns>
+    <drop_columns>N</drop_columns>
+    <change_column_types>N</change_column_types>
+    <fields/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <GUI>
+      <xloc>464</xloc>
+      <yloc>128</yloc>
+    </GUI>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+  </transform>
+  <order>
+    <hop>
+      <from>FROM_USER_ACTIVITY</from>
+      <to>TO_FACT_USER_ACTIVITY</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <notepads/>
+  <attributes/>
+  <transform_error_handling/>
+</pipeline>

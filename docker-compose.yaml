@@ -1,0 +1,68 @@
+
+services:
+  # 1. PostgreSQL Database
+  etl-postgres:
+    image: postgres:16
+    container_name: etl-postgres
+    environment:
+      POSTGRES_DB: streaming_music_dw
+      POSTGRES_USER: etl_user
+      POSTGRES_PASSWORD: etl_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init:/docker-entrypoint-initdb.d:ro
+    networks:
+      - etl-network
+    restart: unless-stopped
+
+  # 2. Apache Hop Web
+  etl-hop:
+    image: apache/hop-web:latest
+    container_name: etl-hop
+    ports:
+      - "8081:8080"
+    environment:
+      HOP_CONFIG_FOLDER: /hop/config
+      HOP_AUDIT_FOLDER: /hop/audit
+      HOP_PROJECT_NAME: streaming-project
+      HOP_PROJECT_FOLDER: /hop/projects/streaming-project
+    volumes:
+      - hop_config:/hop/config
+      - hop_audit:/hop/audit
+      - ./hop-projects/streaming-project:/hop/projects/streaming-project
+    depends_on:
+      - etl-postgres
+    networks:
+      - etl-network
+    restart: unless-stopped
+
+  # 3. pgAdmin
+  etl-pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: etl-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@etl.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      - ./pgadmin/servers.json:/pgadmin4/servers.json:ro
+      - ./pgadmin/pgpass:/pgadmin4/pgpass:ro
+    depends_on:
+      - etl-postgres
+    networks:
+      - etl-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  hop_config:
+  hop_audit:
+  pgadmin_data:
+
+networks:
+  etl-network:
+    driver: bridge
