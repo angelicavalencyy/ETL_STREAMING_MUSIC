@@ -14,7 +14,7 @@
     <created_user>-</created_user>
     <modified_user>-</modified_user>
     <created_date>2026/11/18 07:45:24.918</created_date>
-    <modified_date>2026/11/18 07:53:29.395</modified_date>
+    <modified_date>2026/11/19 08:28:24.079</modified_date>
     <created_hop_version>2.20.0</created_hop_version>
     <modified_hop_version>2.20.0</modified_hop_version>
   </info>
@@ -29,7 +29,10 @@
     mulai,
     berakhir,
     harga,
-    (status = 'CANCELLED') AS is_cancelled
+    CASE 
+        WHEN status = 'CANCELLED' THEN TRUE 
+        ELSE FALSE 
+    END AS is_cancelled
 FROM subscriptions;</sql>
     <limit>0</limit>
     <execute_each_row>N</execute_each_row>
@@ -60,7 +63,7 @@ FROM subscriptions;</sql>
     <schema>public</schema>
     <table>fact_subscription</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <only_when_have_rows>N</only_when_have_rows>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
