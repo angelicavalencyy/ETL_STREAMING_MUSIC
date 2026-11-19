@@ -7,7 +7,7 @@
   <created_user>-</created_user>
   <modified_user>-</modified_user>
   <created_date>2026/11/18 07:48:06.029</created_date>
-  <modified_date>2026/11/19 08:45:50.348</modified_date>
+  <modified_date>2026/11/19 18:04:04.119</modified_date>
   <created_hop_version>2.20.0</created_hop_version>
   <modified_hop_version>2.20.0</modified_hop_version>
   <workflow_version/>
@@ -33,7 +33,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_PACKAGE.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_DIM_PACKAGE.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -61,7 +61,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_ACTIVITY.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_DIM_ACTIVITY.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -89,7 +89,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_USERS.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_DIM_USERS.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -117,7 +117,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_STATUS.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_DIM_STATUS.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -145,7 +145,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_DATE.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_DIM_DATE.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -173,7 +173,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_FACT_PAYMENT.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_FACT_PAYMENT.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -201,7 +201,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_FACT_USER_ACTIVITY.hpl</filename>
+      <filename>/home/hop/pipelines/PL_FACT_USER_ACTIVITY.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -229,7 +229,7 @@
       <attributes_hac/>
     </action>
     <action>
-      <filename>/hop/projects/streaming-project/pipelines/PL_SUBSCRIPTION.hpl</filename>
+      <filename>/home/hop/streaming-project/pipelines/PL_SUBSCRIPTION.hpl</filename>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <clear_rows>N</clear_rows>
@@ -256,118 +256,272 @@
       <parallel>N</parallel>
       <attributes_hac/>
     </action>
+    <action>
+      <filename>/home/hop/streaming-project/pipelines/PL_FACT_PLAY_HISTORY.hpl</filename>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <create_parent_folder>N</create_parent_folder>
+      <set_logfile>N</set_logfile>
+      <set_append_logfile>N</set_append_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <wait_timeout/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <run_configuration>local</run_configuration>
+      <name>PL_FACT_PLAY_HISTORY.hpl</name>
+      <type>PIPELINE</type>
+      <attributes/>
+      <xloc>656</xloc>
+      <yloc>624</yloc>
+      <parallel>N</parallel>
+      <attributes_hac/>
+    </action>
+    <action>
+      <filename>/home/hop/streaming-project/pipelines/PL_FACT_ARTIST_FOLLOWERS.hpl</filename>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <create_parent_folder>N</create_parent_folder>
+      <set_logfile>N</set_logfile>
+      <set_append_logfile>N</set_append_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <wait_timeout/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <run_configuration>local</run_configuration>
+      <name>PL_FACT_ARTIST_FOLLOWERS.hpl</name>
+      <type>PIPELINE</type>
+      <attributes/>
+      <xloc>688</xloc>
+      <yloc>784</yloc>
+      <parallel>N</parallel>
+      <attributes_hac/>
+    </action>
+    <action>
+      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_DEVICE.hpl</filename>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <create_parent_folder>N</create_parent_folder>
+      <set_logfile>N</set_logfile>
+      <set_append_logfile>N</set_append_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <wait_timeout/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <run_configuration>local</run_configuration>
+      <name>PL_DIM_DEVICE.hpl</name>
+      <type>PIPELINE</type>
+      <attributes/>
+      <xloc>192</xloc>
+      <yloc>704</yloc>
+      <parallel>N</parallel>
+      <attributes_hac/>
+    </action>
+    <action>
+      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_ARTIST.hpl</filename>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <create_parent_folder>N</create_parent_folder>
+      <set_logfile>N</set_logfile>
+      <set_append_logfile>N</set_append_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <wait_timeout/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <run_configuration>local</run_configuration>
+      <name>PL_DIM_ARTIST.hpl</name>
+      <type>PIPELINE</type>
+      <attributes/>
+      <xloc>144</xloc>
+      <yloc>816</yloc>
+      <parallel>N</parallel>
+      <attributes_hac/>
+    </action>
+    <action>
+      <filename>/hop/projects/streaming-project/pipelines/PL_DIM_SONGS.hpl</filename>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <create_parent_folder>N</create_parent_folder>
+      <set_logfile>N</set_logfile>
+      <set_append_logfile>N</set_append_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <wait_until_finished>Y</wait_until_finished>
+      <wait_timeout/>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <run_configuration>local</run_configuration>
+      <name>PL_DIM_SONGS.hpl</name>
+      <type>PIPELINE</type>
+      <attributes/>
+      <xloc>176</xloc>
+      <yloc>944</yloc>
+      <parallel>N</parallel>
+      <attributes_hac/>
+    </action>
   </actions>
   <hops>
     <hop>
       <from>PL_DIM_PACKAGE.hpl</from>
       <to>PL_FACT_USER_ACTIVITY.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_ACTIVITY.hpl</from>
       <to>PL_FACT_USER_ACTIVITY.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_USERS.hpl</from>
       <to>PL_FACT_USER_ACTIVITY.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_STATUS</from>
       <to>PL_FACT_USER_ACTIVITY.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_USERS.hpl</from>
       <to>PL_SUBSCRIPTION.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_USERS.hpl</from>
       <to>PL_FACT_PAYMENT.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_DATE.hpl</from>
       <to>PL_SUBSCRIPTION.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_DATE.hpl</from>
       <to>PL_FACT_PAYMENT.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_STATUS</from>
       <to>PL_SUBSCRIPTION.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_STATUS</from>
       <to>PL_FACT_PAYMENT.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>PL_DIM_PACKAGE.hpl</from>
       <to>PL_SUBSCRIPTION.hpl</to>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>PL_DIM_PACKAGE.hpl</to>
+      <from>PL_DIM_USERS.hpl</from>
+      <to>PL_FACT_ARTIST_FOLLOWERS.hpl</to>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>PL_DIM_ACTIVITY.hpl</to>
+      <from>PL_DIM_DATE.hpl</from>
+      <to>PL_FACT_ARTIST_FOLLOWERS.hpl</to>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>PL_DIM_USERS.hpl</to>
+      <from>PL_DIM_ARTIST.hpl</from>
+      <to>PL_FACT_ARTIST_FOLLOWERS.hpl</to>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>PL_DIM_STATUS</to>
+      <from>PL_DIM_USERS.hpl</from>
+      <to>PL_FACT_PLAY_HISTORY.hpl</to>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Start</from>
-      <to>PL_DIM_DATE.hpl</to>
+      <from>PL_DIM_DATE.hpl</from>
+      <to>PL_FACT_PLAY_HISTORY.hpl</to>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>PL_DIM_DEVICE.hpl</from>
+      <to>PL_FACT_PLAY_HISTORY.hpl</to>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>PL_DIM_SONGS.hpl</from>
+      <to>PL_FACT_PLAY_HISTORY.hpl</to>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
       <enabled>Y</enabled>
     </hop>
   </hops>
