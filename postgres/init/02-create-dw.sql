@@ -79,6 +79,11 @@
         is_public BOOLEAN
     );
 
+    CREATE TABLE IF NOT EXISTS dim_genre (
+        genre_id SERIAL PRIMARY KEY,
+        nama_genre VARCHAR(100)
+    );
+    
     -- 2. FACT TABLES
     -- FACT USER ACTIVITY
     CREATE TABLE IF NOT EXISTS fact_user_activity (
