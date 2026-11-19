@@ -3,7 +3,7 @@
 -- Dijalankan di database default (streaming_music_dw)
 -- ==========================================
 
--- DIMENSION TABLES
+-- 1. DIMENSION TABLES
 CREATE TABLE IF NOT EXISTS dim_user (
     user_id INTEGER PRIMARY KEY,
     nama VARCHAR(255),
@@ -33,6 +33,53 @@ CREATE TABLE IF NOT EXISTS dim_activity (
     activity_type VARCHAR(100) PRIMARY KEY
 );
 
+CREATE TABLE IF NOT EXISTS dim_payment_method (
+    metode_bayar VARCHAR(100) PRIMARY KEY
+);
+
+CREATE TABLE IF NOT EXISTS dim_device (
+    device_id INTEGER PRIMARY KEY,
+    tipe_device VARCHAR(100),
+    os VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS dim_label (
+    label_id INTEGER PRIMARY KEY,
+    nama_label VARCHAR(255),
+    negara VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS dim_artist (
+    artist_id INTEGER PRIMARY KEY,
+    label_id INTEGER REFERENCES dim_label(label_id),
+    nama_artis VARCHAR(255),
+    genre_utama VARCHAR(100),
+    negara_asal VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS dim_album (
+    album_id INTEGER PRIMARY KEY,
+    artist_id INTEGER REFERENCES dim_artist(artist_id),
+    judul_album VARCHAR(255),
+    tanggal_rilis DATE,
+    tipe_album VARCHAR(50)
+);
+
+CREATE TABLE IF NOT EXISTS dim_song (
+    song_id INTEGER PRIMARY KEY,
+    album_id INTEGER REFERENCES dim_album(album_id),
+    judul_lagu VARCHAR(255),
+    durasi_detik INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS dim_playlist (
+    playlist_id INTEGER PRIMARY KEY,
+    user_id INTEGER REFERENCES dim_user(user_id),
+    nama_playlist VARCHAR(255),
+    is_public BOOLEAN
+);
+
+-- 2. FACT TABLES
 -- FACT USER ACTIVITY
 CREATE TABLE IF NOT EXISTS fact_user_activity (
     activity_id INTEGER PRIMARY KEY,
@@ -70,8 +117,41 @@ CREATE TABLE IF NOT EXISTS fact_payment (
     tanggal_bayar DATE REFERENCES dim_date(tanggal),
     jumlah NUMERIC(12,2),
     metode_bayar VARCHAR(100)
+        REFERENCES dim_payment_method(metode_bayar)
 );
 
+-- FACT PLAY
+CREATE TABLE IF NOT EXISTS fact_play (
+    play_id INTEGER PRIMARY KEY,
+    tanggal DATE REFERENCES dim_date(tanggal),
+    user_id INTEGER REFERENCES dim_user(user_id),
+    song_id INTEGER REFERENCES dim_song(song_id),
+    device_id INTEGER REFERENCES dim_device(device_id),
+    waktu_mulai TIMESTAMP,
+    durasi_diputar_detik INTEGER,
+    jumlah_pemutaran INTEGER DEFAULT 1,
+    jumlah_skip INTEGER DEFAULT 0
+);
+
+-- FACT ARTIST FOLLOW
+CREATE TABLE IF NOT EXISTS fact_artist_follow (
+    user_id INTEGER REFERENCES dim_user(user_id),
+    artist_id INTEGER REFERENCES dim_artist(artist_id),
+    tanggal DATE REFERENCES dim_date(tanggal),
+    jumlah_follow INTEGER DEFAULT 1,
+    PRIMARY KEY (user_id, artist_id)
+);
+
+-- FACT PLAYLIST SONG
+CREATE TABLE IF NOT EXISTS fact_playlist_song (
+    playlist_id INTEGER REFERENCES dim_playlist(playlist_id),
+    song_id INTEGER REFERENCES dim_song(song_id),
+    urutan INTEGER,
+    jumlah_dimasukkan INTEGER DEFAULT 1,
+    PRIMARY KEY (playlist_id, song_id)
+);
+
+-- 3. INITIAL DATA POPULATION
 -- Populate dim_date (2020-2030)
 INSERT INTO dim_date
 SELECT

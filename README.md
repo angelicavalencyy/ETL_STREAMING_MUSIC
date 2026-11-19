@@ -7,7 +7,7 @@ Proyek ETL (Extract, Transform, Load) untuk membangun Data Warehouse platform mu
 ##  Arsitektur & Teknologi
 
 - **Source Database**: PostgreSQL (`etl_database`) — OLTP berisi 17 tabel data operasional Spotify/Streaming.
-- **Target Data Warehouse**: PostgreSQL (`streaming_music_dw`) — Skema Bintang (Star Schema) berisi 5 Dimension Tables dan 3 Fact Tables.
+- **Target Data Warehouse**: PostgreSQL (`streaming_music_dw`) — Skema Bintang (Star Schema) berisi 12 Dimension Tables dan 6 Fact Tables.
 - **ETL Tool**: Apache Hop Web (Port `8081`).
 - **Database Management**: pgAdmin 4 (Port `5050`).
 - **Orkestrasi**: Docker & Docker Compose.
