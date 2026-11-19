@@ -14,7 +14,7 @@
     <created_user>-</created_user>
     <modified_user>-</modified_user>
     <created_date>2026/11/18 07:24:34.222</created_date>
-    <modified_date>2026/11/18 07:28:09.759</modified_date>
+    <modified_date>2026/11/19 08:21:14.160</modified_date>
     <created_hop_version>2.20.0</created_hop_version>
     <modified_hop_version>2.20.0</modified_hop_version>
   </info>
@@ -24,7 +24,7 @@
     <sql>SELECT DISTINCT
     tipe_paket
 FROM subscriptions
-WHERE package_name IS NOT NULL;</sql>
+WHERE tipe_paket IS NOT NULL;</sql>
     <limit>0</limit>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -38,7 +38,7 @@ WHERE package_name IS NOT NULL;</sql>
     <distribute>Y</distribute>
     <copies>1</copies>
     <GUI>
-      <xloc>144</xloc>
+      <xloc>128</xloc>
       <yloc>112</yloc>
     </GUI>
     <partitioning>
@@ -57,6 +57,11 @@ WHERE package_name IS NOT NULL;</sql>
         <condition>=</condition>
         <name2/>
       </key>
+      <value>
+        <name>tipe_paket</name>
+        <rename>tipe_paket</rename>
+        <update>Y</update>
+      </value>
       <schema>public</schema>
       <table>dim_package</table>
     </lookup>

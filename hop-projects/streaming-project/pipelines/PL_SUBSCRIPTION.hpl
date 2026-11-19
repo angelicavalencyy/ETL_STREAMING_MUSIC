@@ -14,7 +14,7 @@
     <created_user>-</created_user>
     <modified_user>-</modified_user>
     <created_date>2026/11/18 07:45:24.918</created_date>
-    <modified_date>2026/11/18 07:53:29.395</modified_date>
+    <modified_date>2026/11/19 08:28:24.079</modified_date>
     <created_hop_version>2.20.0</created_hop_version>
     <modified_hop_version>2.20.0</modified_hop_version>
   </info>
@@ -22,24 +22,18 @@
     <type>TableInput</type>
     <name>FROM_SUBSCRIPTIONS</name>
     <sql>SELECT
-    s.subscription_id,
-    du.user_key,
-    dp.package_key,
-    ds.status_key,
-    d1.date_key AS start_date_key,
-    d2.date_key AS end_date_key,
-    s.harga
-FROM subscriptions s
-JOIN dim_user du
-    ON s.user_id = du.user_id
-JOIN dim_package dp
-    ON s.tipe_paket = dp.tipe_paket
-JOIN dim_status ds
-    ON s.status = ds.status
-LEFT JOIN dim_date d1
-    ON s.mulai = d1.full_date
-LEFT JOIN dim_date d2
-    ON s.berakhir = d2.full_date;</sql>
+    subscription_id,
+    user_id,
+    tipe_paket,
+    status,
+    mulai,
+    berakhir,
+    harga,
+    CASE 
+        WHEN status = 'CANCELLED' THEN TRUE 
+        ELSE FALSE 
+    END AS is_cancelled
+FROM subscriptions;</sql>
     <limit>0</limit>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -69,7 +63,7 @@ LEFT JOIN dim_date d2
     <schema>public</schema>
     <table>fact_subscription</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <only_when_have_rows>N</only_when_have_rows>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
