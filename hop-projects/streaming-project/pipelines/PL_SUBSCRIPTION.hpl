@@ -22,24 +22,15 @@
     <type>TableInput</type>
     <name>FROM_SUBSCRIPTIONS</name>
     <sql>SELECT
-    s.subscription_id,
-    du.user_key,
-    dp.package_key,
-    ds.status_key,
-    d1.date_key AS start_date_key,
-    d2.date_key AS end_date_key,
-    s.harga
-FROM subscriptions s
-JOIN dim_user du
-    ON s.user_id = du.user_id
-JOIN dim_package dp
-    ON s.tipe_paket = dp.tipe_paket
-JOIN dim_status ds
-    ON s.status = ds.status
-LEFT JOIN dim_date d1
-    ON s.mulai = d1.full_date
-LEFT JOIN dim_date d2
-    ON s.berakhir = d2.full_date;</sql>
+    subscription_id,
+    user_id,
+    tipe_paket,
+    status,
+    mulai,
+    berakhir,
+    harga,
+    (status = 'CANCELLED') AS is_cancelled
+FROM subscriptions;</sql>
     <limit>0</limit>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>

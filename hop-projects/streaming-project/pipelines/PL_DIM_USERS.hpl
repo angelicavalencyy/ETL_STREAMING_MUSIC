@@ -54,11 +54,11 @@
         <update>N</update>
       </value>
       <schema>public</schema>
-      <table>users</table>
+      <table>dim_user</table>
     </lookup>
     <commit>100</commit>
     <update_bypassed>N</update_bypassed>
-    <connection>SOURCE_STREAMING_MUSIC</connection>
+    <connection>TARGET_STREAMING_MUSIC</connection>
     <distribute>Y</distribute>
     <copies>1</copies>
     <GUI>

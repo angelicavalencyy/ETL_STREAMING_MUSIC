@@ -24,7 +24,7 @@
     <sql>SELECT DISTINCT
     tipe_paket
 FROM subscriptions
-WHERE package_name IS NOT NULL;</sql>
+WHERE tipe_paket IS NOT NULL;</sql>
     <limit>0</limit>
     <execute_each_row>N</execute_each_row>
     <variables_active>N</variables_active>
@@ -57,6 +57,11 @@ WHERE package_name IS NOT NULL;</sql>
         <condition>=</condition>
         <name2/>
       </key>
+      <value>
+        <name>tipe_paket</name>
+        <rename>tipe_paket</rename>
+        <update>N</update>
+      </value>
       <schema>public</schema>
       <table>dim_package</table>
     </lookup>
