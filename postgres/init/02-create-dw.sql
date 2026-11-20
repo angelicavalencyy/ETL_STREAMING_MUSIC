@@ -156,6 +156,25 @@
         PRIMARY KEY (playlist_id, song_id)
     );
 
+    -- DIM AD
+    CREATE TABLE IF NOT EXISTS dim_ad (
+        ad_id INTEGER PRIMARY KEY,
+        nama_campaign VARCHAR(255),
+        pengiklan VARCHAR(255)
+    );
+
+    -- FACT AD IMPRESSION
+    CREATE TABLE IF NOT EXISTS fact_ad_impression (
+        impression_id INTEGER PRIMARY KEY,
+        tanggal DATE REFERENCES dim_date(tanggal),
+        user_id INTEGER REFERENCES dim_user(user_id),
+        ad_id INTEGER REFERENCES dim_ad(ad_id),
+        device_id INTEGER REFERENCES dim_device(device_id),
+        waktu_tayang TIMESTAMP,
+        jumlah_tayang INTEGER DEFAULT 1,
+        jumlah_klik INTEGER DEFAULT 0
+    );
+
     -- 3. INITIAL DATA POPULATION
     -- Populate dim_date (2020-2030)
     INSERT INTO dim_date
